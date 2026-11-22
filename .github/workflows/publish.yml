@@ -1,0 +1,47 @@
+name: Publish to PyPI
+
+# Runs only when a GitHub release is published (not on ordinary pushes)
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    # --- Get the code at the release's tag ---
+    - uses: actions/checkout@v4
+
+    # --- Python environment ---
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+
+    # --- Build tools ---
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install build twine
+
+    # --- Build sdist + wheel into dist/ ---
+    - name: Build package
+      run: python -m build
+
+    # --- Validate metadata and README rendering before uploading ---
+    - name: Check distribution
+      run: python -m twine check dist/*
+
+    # --- Upload to PyPI ---
+    # The token is NOT stored here: it is read from the repository secret
+    # PYPI_API_TOKEN (Settings -> Secrets and variables -> Actions)
+    - name: Publish to PyPI
+      env:
+        TWINE_USERNAME: __token__
+        TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+      run: |
+        python -m twine upload dist/*
