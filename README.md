@@ -1,5 +1,8 @@
 # causal-toolkit-bergeson
 
+[![Tests](https://github.com/rhettbergeson/causal-toolkit-bergeson/actions/workflows/tests.yml/badge.svg)](https://github.com/rhettbergeson/causal-toolkit-bergeson/actions)
+[![PyPI version](https://badge.fury.io/py/causal-toolkit-bergeson.svg)](https://pypi.org/project/causal-toolkit-bergeson/)
+
 A Python package for estimating causal effects. It collects the methods built in
 UChicago's *Causal Models in Data Science* (ADSP 32029) course into one installable
 toolkit:
@@ -13,7 +16,15 @@ toolkit:
 
 ## Installation
 
-Requires Python 3.8+. Install from source with [uv](https://docs.astral.sh/uv/):
+Requires Python 3.8+. Install from [PyPI](https://pypi.org/project/causal-toolkit-bergeson/):
+
+```bash
+pip install causal-toolkit-bergeson
+```
+
+### From source (for development)
+
+Clone the repository and install in editable mode with [uv](https://docs.astral.sh/uv/):
 
 ```bash
 # Clone the repository
@@ -187,7 +198,7 @@ HTML report in `htmlcov/`.
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+MIT. See [LICENSE](https://github.com/rhettbergeson/causal-toolkit-bergeson/blob/main/LICENSE).
 
 ---
 
